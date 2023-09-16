@@ -1,10 +1,11 @@
 namespace Proyecto_Buscar_Pares
 {
-    public partial class Form1 : Form
+    public partial class FormJuego : Form
     {
-        public Form1()
+        public FormJuego()
         {
             InitializeComponent();
         }
+
     }
 }

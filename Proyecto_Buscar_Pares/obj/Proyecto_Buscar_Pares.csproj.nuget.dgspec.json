@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\PC\\source\\repos\\Proyecto_Buscar_Pares\\Proyecto_Buscar_Pares\\Proyecto_Buscar_Pares.csproj": {}
+    "C:\\Users\\gabri\\source\\repos\\Proyecto_Buscar_Pares\\Proyecto_Buscar_Pares\\Proyecto_Buscar_Pares.csproj": {}
   },
   "projects": {
-    "C:\\Users\\PC\\source\\repos\\Proyecto_Buscar_Pares\\Proyecto_Buscar_Pares\\Proyecto_Buscar_Pares.csproj": {
+    "C:\\Users\\gabri\\source\\repos\\Proyecto_Buscar_Pares\\Proyecto_Buscar_Pares\\Proyecto_Buscar_Pares.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\PC\\source\\repos\\Proyecto_Buscar_Pares\\Proyecto_Buscar_Pares\\Proyecto_Buscar_Pares.csproj",
+        "projectUniqueName": "C:\\Users\\gabri\\source\\repos\\Proyecto_Buscar_Pares\\Proyecto_Buscar_Pares\\Proyecto_Buscar_Pares.csproj",
         "projectName": "Proyecto_Buscar_Pares",
-        "projectPath": "C:\\Users\\PC\\source\\repos\\Proyecto_Buscar_Pares\\Proyecto_Buscar_Pares\\Proyecto_Buscar_Pares.csproj",
-        "packagesPath": "C:\\Users\\PC\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\PC\\source\\repos\\Proyecto_Buscar_Pares\\Proyecto_Buscar_Pares\\obj\\",
+        "projectPath": "C:\\Users\\gabri\\source\\repos\\Proyecto_Buscar_Pares\\Proyecto_Buscar_Pares\\Proyecto_Buscar_Pares.csproj",
+        "packagesPath": "C:\\Users\\gabri\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\gabri\\source\\repos\\Proyecto_Buscar_Pares\\Proyecto_Buscar_Pares\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\gabri\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -26,7 +22,6 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -63,7 +58,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
         }
       }
     }
