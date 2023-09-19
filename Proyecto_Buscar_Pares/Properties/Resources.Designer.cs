@@ -63,6 +63,16 @@ namespace Proyecto_Buscar_Pares.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap IMG_20230916_WA0002 {
+            get {
+                object obj = ResourceManager.GetObject("IMG-20230916-WA0002", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap IMG_20230916_WA0003 {
             get {
                 object obj = ResourceManager.GetObject("IMG-20230916-WA0003", resourceCulture);
