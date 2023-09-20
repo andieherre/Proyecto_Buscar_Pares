@@ -36,6 +36,8 @@
             panel2 = new Panel();
             Tiempo = new System.Windows.Forms.Timer(components);
             button1 = new Button();
+            btnPista = new Button();
+            temporizadorPista = new System.Windows.Forms.Timer(components);
             panel2.SuspendLayout();
             SuspendLayout();
             // 
@@ -114,6 +116,19 @@
             button1.TabIndex = 6;
             button1.Text = "Reiniciar";
             button1.UseVisualStyleBackColor = true;
+            button1.Click += ReinciarClick;
+            // 
+            // btnPista
+            // 
+            btnPista.Font = new Font("Rockwell", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
+            btnPista.ForeColor = Color.FromArgb(146, 119, 76);
+            btnPista.Location = new Point(200, 420);
+            btnPista.Name = "btnPista";
+            btnPista.Size = new Size(89, 33);
+            btnPista.TabIndex = 7;
+            btnPista.Text = "Pista";
+            btnPista.UseVisualStyleBackColor = true;
+            btnPista.Click += btnPista_Click_1;
             // 
             // FormJuego
             // 
@@ -121,6 +136,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(229, 209, 172);
             ClientSize = new Size(750, 487);
+            Controls.Add(btnPista);
             Controls.Add(button1);
             Controls.Add(panel2);
             Name = "FormJuego";
@@ -139,5 +155,7 @@
         private Panel panel2;
         private System.Windows.Forms.Timer Tiempo;
         private Button button1;
+        private Button btnPista;
+        private System.Windows.Forms.Timer temporizadorPista;
     }
 }

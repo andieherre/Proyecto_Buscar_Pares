@@ -130,11 +130,13 @@ namespace Proyecto_Buscar_Pares
             }
 
             numeros = randomList;
+
             for (int i = 0; i < imagenes.Count; i++)
             {
                 imagenes[i].Image = null;
                 imagenes[i].Tag = numeros[i].ToString();
             }
+
             intentos = 0;
             lbFallos.Text = "0" + intentos;
             lbTiempo.Text = "00:" + tiempoTotal;
@@ -144,6 +146,7 @@ namespace Proyecto_Buscar_Pares
         }
         private void CheckPictures(PictureBox A, PictureBox B)
         {
+ 
             if (seleccion1 == seleccion2)
             {
                 A.Tag = null;
@@ -183,20 +186,55 @@ namespace Proyecto_Buscar_Pares
                 GameOver();
             }
         }
+
         private void GameOver()
         {
             Tiempo.Stop();
             gameOver = true;
 
             if (ganar)
-                    {
-                MessageBox.Show("Â¡Has ganado!", "GameOver", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        }
+            {
+                MessageBox.Show("¡Has ganado!", "GameOver", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
             else if (ganar == false)
             {
                 MessageBox.Show("Has perdido :(", "GameOver", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
+
+        private void MostrarPista()
+        {
+            List<PictureBox> imagenesNoEmparejadas = new List<PictureBox>();
+
+            foreach (PictureBox pic in imagenes)
+            {
+                if (pic.Tag != null && pic.Image == null)
+                {
+                    imagenesNoEmparejadas.Add(pic);
+                }
+            }
+
+            if (imagenesNoEmparejadas.Count >= 2)
+            {
+                Random random = new Random();
+                int indiceImagen1 = random.Next(imagenesNoEmparejadas.Count);
+                int indiceImagen2;
+
+                do
+                {
+                    indiceImagen2 = random.Next(imagenesNoEmparejadas.Count);
+                }
+                while (indiceImagen2 == indiceImagen1);
+
+                PictureBox imagen1 = imagenesNoEmparejadas[indiceImagen1];
+                PictureBox imagen2 = imagenesNoEmparejadas[indiceImagen2];
+
+                imagen1.Image = Image.FromFile("gatos/" + (string)imagen1.Tag + ".png");
+                imagen2.Image = Image.FromFile("gatos/" + (string)imagen2.Tag + ".png");
+              
+            }
+        }
+
         private void btnPista_Click_1(object sender, EventArgs e)
         {
             MostrarPista();
