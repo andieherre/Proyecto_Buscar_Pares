@@ -116,7 +116,19 @@ namespace Proyecto_Buscar_Pares
         }
         private void ReiniciarJuego()
         {
-            var randomList = numeros.OrderBy(x => Guid.NewGuid()).ToList();
+            Random random = new Random();
+            List<int> randomList = new List<int>(numeros);
+
+            int n = randomList.Count;
+            while (n > 1)
+            {
+                n--;
+                int k = random.Next(n + 1);
+                int value = randomList[k];
+                randomList[k] = randomList[n];
+                randomList[n] = value;
+            }
+
             numeros = randomList;
             for (int i = 0; i < imagenes.Count; i++)
             {
@@ -146,15 +158,26 @@ namespace Proyecto_Buscar_Pares
             seleccion1 = null;
             seleccion2 = null;
 
-            foreach (PictureBox imagen in imagenes.ToList())
+            for (int i = 0; i < imagenes.Count; i++)
             {
+                PictureBox imagen = imagenes[i];
                 if (imagen.Tag != null)
                 {
                     imagen.Image = null;
                 }
             }
 
-            if ((imagenes.All(o => o.Tag == imagenes[0].Tag)) && cuentaRegresiva > 0)
+            bool ganar = true;
+            for (int i = 1; i < imagenes.Count; i++)
+            {
+                if (imagenes[i].Tag != imagenes[0].Tag)
+                {
+                    ganar = false;
+                    break;
+                }
+            }
+
+            if (ganar && cuentaRegresiva > 0)
             {
                 ganar = true;
                 GameOver();
@@ -176,7 +199,8 @@ namespace Proyecto_Buscar_Pares
         }
         private void btnPista_Click_1(object sender, EventArgs e)
         {
+            MostrarPista();
+        }
 
     }
-}
 }
