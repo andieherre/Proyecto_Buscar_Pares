@@ -32,7 +32,7 @@
             lbTiempo = new Label();
             label2 = new Label();
             label1 = new Label();
-            lbAciertos = new Label();
+            lbFallos = new Label();
             panel2 = new Panel();
             Tiempo = new System.Windows.Forms.Timer(components);
             button1 = new Button();
@@ -71,34 +71,33 @@
             label1.ForeColor = SystemColors.Control;
             label1.Location = new Point(37, 61);
             label1.Name = "label1";
-            label1.Size = new Size(130, 21);
+            label1.Size = new Size(68, 21);
             label1.TabIndex = 3;
-            label1.Text = "Movimientos:";
+            label1.Text = "Fallos:";
             // 
-            // lbAciertos
+            // lbFallos
             // 
-            lbAciertos.AutoSize = true;
-            lbAciertos.BackColor = Color.FromArgb(146, 119, 76);
-            lbAciertos.Font = new Font("Rockwell", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
-            lbAciertos.ForeColor = SystemColors.Control;
-            lbAciertos.Location = new Point(173, 61);
-            lbAciertos.Name = "lbAciertos";
-            lbAciertos.Size = new Size(20, 21);
-            lbAciertos.TabIndex = 4;
-            lbAciertos.Text = "0";
+            lbFallos.AutoSize = true;
+            lbFallos.BackColor = Color.FromArgb(146, 119, 76);
+            lbFallos.Font = new Font("Rockwell", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
+            lbFallos.ForeColor = SystemColors.Control;
+            lbFallos.Location = new Point(137, 61);
+            lbFallos.Name = "lbFallos";
+            lbFallos.Size = new Size(20, 21);
+            lbFallos.TabIndex = 4;
+            lbFallos.Text = "0";
             // 
             // panel2
             // 
             panel2.BackColor = Color.FromArgb(146, 119, 76);
             panel2.Controls.Add(label2);
-            panel2.Controls.Add(lbAciertos);
+            panel2.Controls.Add(lbFallos);
             panel2.Controls.Add(lbTiempo);
             panel2.Controls.Add(label1);
             panel2.Location = new Point(485, 156);
             panel2.Name = "panel2";
             panel2.Size = new Size(230, 105);
             panel2.TabIndex = 5;
-
             // 
             // Tiempo
             // 
@@ -115,7 +114,6 @@
             button1.TabIndex = 6;
             button1.Text = "Reiniciar";
             button1.UseVisualStyleBackColor = true;
-            button1.Click += ReinciarEvent;
             // 
             // FormJuego
             // 
@@ -137,7 +135,7 @@
         private Label lbTiempo;
         private Label label2;
         private Label label1;
-        private Label lbAciertos;
+        private Label lbFallos;
         private Panel panel2;
         private System.Windows.Forms.Timer Tiempo;
         private Button button1;

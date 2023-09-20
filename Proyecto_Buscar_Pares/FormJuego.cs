@@ -1,23 +1,85 @@
+using System;
+using System.Windows.Forms;
+
 namespace Proyecto_Buscar_Pares
 {
     public partial class FormJuego : Form
     {
-        List<int> numero = new List<int> { 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6 };
+        //Declaracion de Variables//
+        List<int> numeros = new List<int> { 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6 };
         string seleccion1;
         string seleccion2;
         int intentos;
         List<PictureBox> imagenes = new List<PictureBox>();
-        PictureBox imgA;
-        PictureBox imgB;
-        int tries;
-        int tiempoTotal = 30;
+        PictureBox imagenA;
+        PictureBox imagenB;
+        int tiempoTotal = 50;
         int cuentaRegresiva;
         bool gameOver = false;
+        bool ganar = true;
+
         public FormJuego()
         {
             InitializeComponent();
             CargarImagenes();
         }
+        private void FormJuego_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void NewPic_Click(object sender, EventArgs e)
+        {
+            if (gameOver)
+            {
+                return;
+            }
+            if (seleccion1 == null)
+            {
+                imagenA = sender as PictureBox;
+                if (imagenA.Tag != null && imagenA.Image == null)
+                {
+                    imagenA.Image = Image.FromFile("gatos/" + (string)imagenA.Tag + ".png");
+                    seleccion1 = (string)imagenA.Tag;
+                }
+            }
+            else if (seleccion2 == null)
+            {
+                imagenB = sender as PictureBox;
+                if (imagenB.Tag != null && imagenB.Image == null)
+                {
+                    imagenB.Image = Image.FromFile("gatos/" + (string)imagenB.Tag + ".png");
+                    seleccion2 = (string)imagenB.Tag;
+                }
+            }
+            else
+            {
+                CheckPictures(imagenA, imagenB);
+            }
+        }
+
+        private void TiempoEvent(object sender, EventArgs e)
+        {
+            cuentaRegresiva--;
+            lbTiempo.Text = "00:" + cuentaRegresiva;
+            if (cuentaRegresiva <= 0)
+            {
+                ganar = false;
+                GameOver();
+                foreach (PictureBox x in imagenes)
+                {
+                    if (x.Tag != null)
+                    {
+                        x.Image = Image.FromFile("gatos/" + (string)x.Tag + ".png");
+                    }
+                }
+            }
+        }
+        private void ReinciarClick(object sender, EventArgs e)
+        {
+            ReiniciarJuego();
+        }
+
 
         private void CargarImagenes()
         {
@@ -52,54 +114,18 @@ namespace Proyecto_Buscar_Pares
 
             ReiniciarJuego();
         }
-
-        private void FormJuego_Load(object sender, EventArgs e)
-        {
-
-        }
-        private void NewPic_Click(object sender, EventArgs e)
-        {
-            if (gameOver)
-            {
-                return;
-            }
-            if (seleccion1 == null)
-            {
-                imgA = sender as PictureBox;
-                if (imgA.Tag != null && imgA.Image == null)
-                {
-                    imgA.Image = Image.FromFile("gatos/" + (string)imgA.Tag + ".png");
-                    seleccion1 = (string)imgA.Tag;
-                }
-            }
-            else if (seleccion2 == null)
-            {
-                imgB = sender as PictureBox;
-                if (imgB.Tag != null && imgB.Image == null)
-                {
-                    imgB.Image = Image.FromFile("gatos/" + (string)imgB.Tag + ".png");
-                    seleccion2 = (string)imgB.Tag;
-                }
-            }
-            else
-            {
-                CheckPictures(imgA, imgB);
-            }
-        }
         private void ReiniciarJuego()
         {
-            var randomList = numero.OrderBy(x => Guid.NewGuid()).ToList();
-            // assign the random list to the original
-            numero = randomList;
+            var randomList = numeros.OrderBy(x => Guid.NewGuid()).ToList();
+            numeros = randomList;
             for (int i = 0; i < imagenes.Count; i++)
             {
                 imagenes[i].Image = null;
-                imagenes[i].Tag = numero[i].ToString();
+                imagenes[i].Tag = numeros[i].ToString();
             }
             intentos = 0;
-            //lblStatus.Text = "Mismatched: " + tries + " times.";
-            lbAciertos.Text = "0" + intentos;
-            lbTiempo.Text = "0" + tiempoTotal;
+            lbFallos.Text = "0" + intentos;
+            lbTiempo.Text = "00:" + tiempoTotal;
             gameOver = false;
             Tiempo.Start();
             cuentaRegresiva = tiempoTotal;
@@ -111,15 +137,15 @@ namespace Proyecto_Buscar_Pares
                 A.Tag = null;
                 B.Tag = null;
             }
-
             else
             {
-                tries++;
-                lbAciertos.Text = "0" + tries;
+                intentos++;
+                lbFallos.Text = "0" + intentos;
             }
 
             seleccion1 = null;
             seleccion2 = null;
+
             foreach (PictureBox imagen in imagenes.ToList())
             {
                 if (imagen.Tag != null)
@@ -128,53 +154,29 @@ namespace Proyecto_Buscar_Pares
                 }
             }
 
-            if (imagenes.All(o => o.Tag == imagenes[0].Tag))
+            if ((imagenes.All(o => o.Tag == imagenes[0].Tag)) && cuentaRegresiva > 0)
             {
-                GameOver("Buen trabajo, has ganado!!!!");
+                ganar = true;
+                GameOver();
             }
         }
-        private void GameOver(string msg)
+        private void GameOver()
         {
             Tiempo.Stop();
             gameOver = true;
-            MessageBox.Show(msg + " Haga click para comenzar denuevo :) ", "GameOver", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        }
 
-        private void TiempoEvent(object sender, EventArgs e)
-        {
-            cuentaRegresiva--;
-            lbTiempo.Text = "00:" + cuentaRegresiva;
-            if (cuentaRegresiva < 1)
-            {
-                GameOver("Tiempo fuera, has perdido. ");
-                foreach (PictureBox x in imagenes)
-                {
-                    if (x.Tag != null)
+            if (ganar)
                     {
-                        x.Image = Image.FromFile("gatos/" + (string)x.Tag + ".png");
-                    }
-                }
-            }
+                MessageBox.Show("¡Has ganado!", "GameOver", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
-
-        private void ReinciarEvent(object sender, EventArgs e)
-        {
-            var randomList = numero.OrderBy(x => Guid.NewGuid()).ToList();
-            numero = randomList;
-            for (int i = 0; i < imagenes.Count; i++)
+            else if (ganar == false)
             {
-                imagenes[i].Image = null;
-                imagenes[i].Tag = imagenes[i].ToString();
+                MessageBox.Show("Has perdido :(", "GameOver", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            intentos = 0;
-            lbAciertos.Text = "0" + intentos;
-            lbTiempo.Text = "00:" + tiempoTotal;
-            gameOver = false;
-            Tiempo.Start();
-            cuentaRegresiva = tiempoTotal;
         }
-
+        private void btnPista_Click_1(object sender, EventArgs e)
+        {
 
     }
 }
-
+}
