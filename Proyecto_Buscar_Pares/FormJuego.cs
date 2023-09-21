@@ -1,6 +1,6 @@
 using System;
 using System.Windows.Forms;
-
+//ayuda
 namespace Proyecto_Buscar_Pares
 {
     public partial class FormJuego : Form
@@ -194,7 +194,7 @@ namespace Proyecto_Buscar_Pares
 
             if (ganar)
             {
-                MessageBox.Show("¡Has ganado!", "GameOver", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Â¡Has ganado!", "GameOver", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else if (ganar == false)
             {
